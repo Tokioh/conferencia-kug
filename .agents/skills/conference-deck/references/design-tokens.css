@@ -1,0 +1,339 @@
+/* =========================================================================
+   CONFERENCE DECK DESIGN TOKENS & SYSTEM STYLES
+   Inspired by KotlinConf / JetBrains 2026 Keynote Design System
+   ========================================================================= */
+
+:root {
+  /* Core Color Palette */
+  --bg-deep: #090211;
+  --bg-card: rgba(25, 12, 38, 0.72);
+  --bg-card-strong: rgba(34, 16, 52, 0.88);
+  --bg-card-hover: rgba(45, 20, 68, 0.8);
+  --text-cream: #FCECE3;
+  --text-white: #FFFFFF;
+  --text-muted: #B8A7C9;
+
+  /* Vibrant Neon Accents */
+  --kt-orange: #FF7A00;
+  --kt-red: #FF2E4C;
+  --kt-magenta: #D900B6;
+  --kt-purple: #7F52FF;
+  --kt-green: #10B981;
+  --kt-amber: #F59E0B;
+  --kt-blue: #38BDF8;
+
+  /* Borders & Shadows */
+  --border-subtle: rgba(217, 0, 182, 0.28);
+  --border-active: rgba(255, 122, 0, 0.6);
+  --glass-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --glow-orange: 0 0 24px rgba(255, 122, 0, 0.35);
+  --glow-purple: 0 0 24px rgba(127, 82, 255, 0.35);
+}
+
+/* Base Viewport & Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-deep);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-cream);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle Technical Grid Background */
+.bg-grid-pattern {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(127, 82, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 82, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ambient Radial Glows */
+.ambient-glow-tl {
+  position: fixed;
+  top: -18%;
+  right: -10%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, rgba(255, 94, 0, 0.22) 0%, rgba(217, 0, 182, 0.09) 45%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+}
+
+.ambient-glow-bl {
+  position: fixed;
+  bottom: -22%;
+  left: -12%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(255, 68, 0, 0.16) 0%, rgba(127, 82, 255, 0.11) 50%, transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+}
+
+.ambient-glow-center {
+  position: fixed;
+  top: 30%;
+  right: 15%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(127, 82, 255, 0.10) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+/* Top Presentation Progress Bar */
+.top-deck-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 100;
+}
+
+.top-deck-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF7A00 0%, #FF2E4C 35%, #D900B6 70%, #7F52FF 100%);
+  box-shadow: 0 0 10px rgba(255, 122, 0, 0.7);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Deck Header & Footer */
+.deck-header {
+  position: fixed;
+  top: 14px;
+  left: 36px;
+  right: 36px;
+  height: 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 40;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--text-white);
+  transition: opacity 0.2s ease;
+}
+
+.brand-lockup:hover {
+  opacity: 0.85;
+}
+
+.block-badge {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.deck-footer {
+  position: fixed;
+  bottom: 16px;
+  left: 36px;
+  right: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 40;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.slide-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--kt-orange);
+  background: rgba(255, 122, 0, 0.1);
+  border: 1px solid rgba(255, 122, 0, 0.25);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* Main Slide Stage */
+.slide-stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px 80px 80px;
+  z-index: 10;
+}
+
+/* Slide Typography */
+.slide-title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text-white);
+  line-height: 1.18;
+  margin-bottom: 6px;
+}
+
+.slide-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+
+/* Tag Pills */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tag-gold {
+  background: rgba(255, 193, 7, 0.12);
+  color: #FFC107;
+  border: 1px solid rgba(255, 193, 7, 0.35);
+}
+
+.tag-orange {
+  background: rgba(255, 122, 0, 0.12);
+  color: var(--kt-orange);
+  border: 1px solid rgba(255, 122, 0, 0.35);
+}
+
+.tag-purple {
+  background: rgba(127, 82, 255, 0.14);
+  color: #B598FF;
+  border: 1px solid rgba(127, 82, 255, 0.35);
+}
+
+.tag-red {
+  background: rgba(255, 46, 76, 0.12);
+  color: #FF5A72;
+  border: 1px solid rgba(255, 46, 76, 0.35);
+}
+
+.tag-green {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+/* Glass Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(14px);
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+}
+
+.card.highlight-orange {
+  border-color: rgba(255, 122, 0, 0.45);
+  background: linear-gradient(135deg, rgba(25, 12, 38, 0.85) 0%, rgba(45, 16, 30, 0.5) 100%);
+}
+
+.card.highlight-purple {
+  border-color: rgba(127, 82, 255, 0.45);
+  background: linear-gradient(135deg, rgba(25, 12, 38, 0.85) 0%, rgba(28, 14, 52, 0.5) 100%);
+}
+
+.card.highlight-green {
+  border-color: rgba(16, 185, 129, 0.45);
+  background: linear-gradient(135deg, rgba(25, 12, 38, 0.85) 0%, rgba(10, 36, 26, 0.5) 100%);
+}
+
+.big-stat {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #FFFFFF 30%, #FF7A00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Floating Interactive Controls */
+.interactive-controls {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 6, 24, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px);
+  padding: 6px 14px;
+  border-radius: 999px;
+  z-index: 50;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+}
+
+.ctrl-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-cream);
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
+}
+
+.ctrl-btn.active {
+  background: rgba(255, 122, 0, 0.25);
+  color: var(--kt-orange);
+}
